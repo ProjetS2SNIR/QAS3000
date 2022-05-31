@@ -1,0 +1,65 @@
+
+.right{
+    width: 50%;
+    height: 60%;
+    background-color: #fff;
+    border-radius: 8px;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    color: black;
+}
+
+.right h1{
+    text-align: center;
+    background-color: dodgerblue;
+     border-radius: 8px 8px 0px 0px;
+}
+
+.label{
+color: black;
+}
+
+input[type=range]
+{
+  height: 60%;
+  width: 60%;
+  font-size: 3.5em;
+  color: black;
+  margin-top: 5%;
+}
+
+.valide 
+{
+      position: absolute;
+      left: 20%;
+      top: 75%;
+      height: 60px;
+      width: 150px;
+        border-radius: 20px;
+
+}
+
+.initial
+{
+      position: absolute;
+      left: 60%;
+      top: 75%;
+      height: 60px;
+      width: 150px;
+        border-radius: 20px;
+
+}
+
+.valide:active{ 
+    background-color: #29DB3F;
+    color: black;
+     border-radius: 20px;
+}
+
+.initial:active{ 
+    background-color: #DC2718;
+    color: black; 
+     border-radius: 20px;
+}

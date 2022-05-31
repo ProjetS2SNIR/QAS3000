@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seuils</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link href="site.css" rel="stylesheet">
+  <link href="parametre.css" rel="stylesheet">
+</head>
+<body>
+  <form action="parametre.php" method="POST">
+  <header class="header" id="header">
+    <nav class="nav container">
+        <a href="#" class="nav__logo">
+            <i class="ri-leaf-fill nav__logo-icon"></i> QAS3000
+        </a>
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="accueil.html" class="nav__link">Accueil</a>
+                </li>
+                <li class="nav__item">
+                    <a href="salle.html" class="nav__link">Salles</a>
+                </li>
+                <li class="nav__item">
+                    <a href="meteo.php" class="nav__link">Metéo</a>
+                </li>
+                <li class="nav__item">
+                    <a href="parametre.html" class="nav__link  active-link">Paramètres</a>
+                </li>
+                <li class="nav__item">
+                    <a href="index.php" class="nav__link deconnexion">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+
+        
+    </nav>
+</header>
+
+     <div class="right">
+                <h1>Paramètre : </h1>
+            <div>
+                <input type="range" id="temp" name="temp" class="parametre"
+                       min="-20" max="50" oninput="this.nextElementSibling.value = this.value">
+                <output>40</output>
+                <label for="temp">° (Temperature)</label>
+            </div>
+
+            <div>
+                <input type="range" id="c02" name="co2" class="parametre"
+                       min="0" max="10000" oninput="this.nextElementSibling.value = this.value">
+                <output>400</output>
+                <label for="c02">ppm (C02)</label>
+            </div>
+
+            <div>
+                <input type="range" id="humi" name="humi" class="parametre"
+                       min="0" max="100" oninput="this.nextElementSibling.value = this.value">
+                <output>50</output>
+                <label for="temp">% (Humidité)</label>
+            </div>
+
+            <div>
+                <input type="range" id="quali" name="quali" class="parametre"
+                       min="0" max="10000" oninput="this.nextElementSibling.value = this.value">
+                <output>400</output>
+                <label for="quali">ppm (Qualité d'air)</label>
+            </div>
+
+            <div>
+                <input type="submit" name="valide" value="Validé" class="valide" />
+                <input type="submit" name="initialise" value="Initialisé" class=" initial" />
+            </div>
+
+        </div>
+</body>
+</html>

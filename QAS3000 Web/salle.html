@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather App</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link href="site.css" rel="stylesheet">
+  <link href="salle.css" rel="stylesheet">
+</head>
+<body>
+ <form action="parametre.php" method="POST">
+  <header class="header" id="header">
+    <nav class="nav container">
+        <a href="#" class="nav__logo">
+            <i class="ri-leaf-fill nav__logo-icon"></i> QAS3000
+        </a>
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="accueil.html" class="nav__link">Accueil</a>
+                </li>
+                <li class="nav__item">
+                    <a href="salle.html" class="nav__link active-link">Salles</a>
+                </li>
+                <li class="nav__item">
+                    <a href="meteo.php" class="nav__link">Metéo</a>
+                </li>
+                <li class="nav__item">
+                    <a href="parametre.html" class="nav__link">Paramètres</a>
+                </li>
+                <li class="nav__item">
+                    <a href="index.php" class="nav__link deconnexion">Déconnexion</a>
+                </li>
+            </ul>
+	       </div>	        
+    </nav>
+
+                        
+</header>
+<div class="left">
+        <div class="content">
+            <h1>Salle A031</h1>
+           <img class="temp" src="./image/temperaturenoir.png"><a class="resultt"> 31° </a>
+           <img class="humi" src="./image/humiditénoir.png"><a class="resulth"> 50% </a>
+ 	   <img class="co" src="./image/co2noir.png"><a class="resultc"> 400ppm </a>
+ 	   <img class="pm" src="./image/pm2.5noir.png"><a class="resultp"> 1000ppm </a>
+        </div>
+        </div>
+</body>
+</html>
+ 

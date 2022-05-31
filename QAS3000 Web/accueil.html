@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Accueil</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+        <title>Parallax responsive landing page</title>
+
+        <link rel="stylesheet" href="besoins/css/styles.css">
+          <link href="site.css" rel="stylesheet">
+
+        <!-- ICONS BOXICONS -->
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <!-- ===== HEADER =====-->
+          <header class="header" id="header">
+    <nav class="nav container">
+        <a href="#" class="nav__logo">
+            <i class="ri-leaf-fill nav__logo-icon"></i> QAS3000
+        </a>
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="accueil.html" class="nav__link active-link">Accueil</a>
+                </li>
+                <li class="nav__item">
+                    <a href="salle.html" class="nav__link">Salles</a>
+                </li>
+                <li class="nav__item">
+                    <a href="meteo.php" class="nav__link">Metéo</a>
+                </li>
+                <li class="nav__item">
+                    <a href="parametre.html" class="nav__link">Paramètres</a>
+                </li>
+                <li class="nav__item">
+                    <a href="index.php" class="nav__link deconnexion">Déconnexion</a>
+                </li>
+            </ul>
+        </div>
+
+        
+    </nav>
+</header>
+
+
+        <main>
+            <!-- ===== HOME =====-->
+            <div class="home">
+                <div class="parallax home__parallax home__parallax-img1" data-rellax-speed="-9"></div>
+                <div class="parallax home__parallax home__parallax-img2" data-rellax-speed="-7"></div>
+                <div class="parallax home__parallax home__parallax-img3" data-rellax-speed="-6"></div>
+                <div class="parallax home__parallax home__parallax-img4" data-rellax-speed="-3"></div>
+
+                <h1 class="parallax home__title" data-rellax-speed="-6">Quality Air System</h1>
+                <span class="parallax home__subtitle" data-rellax-speed="-5"><br><br>Crée par Adam AIT HAMID |  Simon SHAO | Mathieu FERNANDES</span> 
+
+                <div class="home__scroll">
+                   <a href="#section"><i class='bx bx-mouse'></i></a>
+                </div>
+            </div>
+
+            <!-- ===== SECTION =====-->
+            <section class="l-section" id="section">
+                <div class="section">
+                    <div class="section__data">                     
+                        <h2 class="section__title">QUALITY AIR SYSTEM</h2>
+                        <p class="section__text">Notre projet consiste en la création d’un système de surveillance de la qualité de l’air dans une salle qui nous permettra d’ouvrir ou fermer les fenêtres en fonction de la température, de l’humidité et du CO2 contenu dans l’air d’une salle du lycée Jean Jaurès. Les valeurs obtenues issues de capteurs seront enregistrées puis utilisées pour ouvrir ou fermer les fenêtres si le seuil mise en place a été atteint. </p>
+                    </div>
+        
+                    <img src="besoins/img/imgm.jpg" alt="" class="section__img">
+                </div>
+            </section>
+        </main>
+
+        <!-- RELLAX JS -->
+        <script src="besoins/js/rellax.min.js"></script>
+
+        <!-- GSAP -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+
+        <!-- SCROLL REVEAL -->
+        <script src="https://unpkg.com/scrollreveal"></script>
+
+        <!-- MAIN JS -->
+        <script src="besoins/js/main.js"></script>
+
+    </body>
+</html>
