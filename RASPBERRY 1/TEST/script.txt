@@ -1,0 +1,10 @@
+send at+cmgf=1
+expect "OK"
+send \r\n
+send at+cmgs="0754180255"
+expect "OK"
+send \r\n
+send hi msg
+send \032
+^z
+^D
