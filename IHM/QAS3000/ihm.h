@@ -10,6 +10,10 @@
 #include <QApplication>
 #include <QPushButton>
 #include <QObject>
+#include <QWidget>
+#include <time.h>
+#include <unistd.h>
+#include <QTimer>
 
 using namespace std;
 
