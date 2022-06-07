@@ -5,7 +5,7 @@ import sys
 sgp30 = SGP30()
 
 def crude_progress_bar(): #Fonction permettant de chauffer le capteur avant la mesure
-	sys.stdout.flush()
+        sys.stdout.flush()
 
 sgp30.start_measurement() #Fonction permettant de mesurer le CO2 dans l'air
 
