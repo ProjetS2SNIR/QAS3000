@@ -1,6 +1,8 @@
 #ifndef IHM_H
 #define IHM_H
 
+// Ajout de bibliothèques néccessaire à la construction du programme. Les bibliothèques commençant par Q sont issues de QT et facilite la création des programmes 
+
 #include <QMainWindow>
 #include <string>
 #include <QtSql>
@@ -11,13 +13,19 @@
 
 using namespace std;
 
+// Constructeur de la classe, QT lui donne le namespace Ui
+
 namespace Ui {
 class IHM;
 }
 
+// La classe IHM qui hérite à la création par QT de la classe QMainWindow
+
 class IHM : public QMainWindow
 {
     Q_OBJECT
+
+// Définition des méthodes publics
 
 public:
     explicit IHM(QWidget *parent = nullptr);
@@ -33,8 +41,10 @@ public:
     ~IHM();
     int connexion();
 
+// Définition des attributs, en private selon les règles de la POO
+
 private:
-    Ui::IHM *ui;
+    Ui::IHM *ui; 
     QSqlDatabase dbQAS3000;
     int CO2;
     int QA;
@@ -48,6 +58,8 @@ private:
     string Code;
     QString CodeCache;
 
+// Définition des méthodes public slots qui permet d'éffectuer des actions sur l'IHM
+
 public slots:
     void valeurCO2_valueChanged();
     void valeurTemperature_valueChanged();
@@ -57,6 +69,8 @@ public slots:
     void valeurHeure_valueChanged();
     void dateHeure_valueChanged();
     void codeCache_valueChanged();
+
+// Définition des méthodes privées slots qui permet d'éffectuer des actions sur l'IHM
 
 private slots:
     void on_boutonAutoOff_clicked();
