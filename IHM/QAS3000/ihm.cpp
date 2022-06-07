@@ -1,9 +1,13 @@
+// Include des fichiers .h dont on a besoin pour définir les méthodes, car on a seulement des méthodes déclarées et des attributs
+
 #include "ihm.h"
 #include "ui_ihm.h"
-#include <QTextEdit>
-#include <QTimer>
+
+// Ajout du namespace std pour ne pas répeter à chaque fois std:: sur la bibliothèque <iostream>
 
 using namespace std;
+
+// Définition du constructeur de l'interface, généré automatiquement par QT. Elle permet la création de l'application à la création de l'objet IHM.
 
 IHM::IHM(QWidget *parent) :
     QMainWindow(parent),
@@ -11,6 +15,9 @@ IHM::IHM(QWidget *parent) :
 {
     ui->setupUi(this);
 }
+
+// On définit ici tout les setters qui modifie les valeurs dans l'interface. On récupére les infos de ui_ihm.h et on modifie les valeurs avec setText qui est une action de SLOT et des getters
+// C'est avec les SLOTS et les SIGNAUX qu'on va effectuer des actions à travers notre interface.
 
 void IHM::codeCache_valueChanged()
 {
@@ -52,27 +59,38 @@ void IHM::dateHeure_valueChanged()
     ui->dateHeure->setText(getDateHeure());
 }
 
+// Desctructeur de la classe IHM qui permet de libérer l'espace mémoire après que l'objet ne soit plus utilisé
+
 IHM::~IHM()
 {
     delete ui;
 }
+
+// Méthode qui permet de nous connecter à la base de données et en extraire les informations qui nous intéresse.
+// On va aussi insérer des valeurs dans la base de données pour la partie bouton de l'interface, afin de donner des insctructions aux programmes
+
 int IHM::connexion()
 {
-    dbQAS3000 = QSqlDatabase::addDatabase("QMYSQL");
-    dbQAS3000.setHostName("192.168.2.128");
-    dbQAS3000.setDatabaseName("QAS3000");
-    dbQAS3000.setUserName("mathieu");
-    dbQAS3000.setPassword("projet2022");
-    dbQAS3000.setPort(3306);
+    dbQAS3000 = QSqlDatabase::addDatabase("QMYSQL"); // Connexion via QMYSQL, un outil de QT qui permet de spécifier qu'on utilise une BD base de données MYSQL
+    dbQAS3000.setHostName("192.168.2.128"); // On spécifie l'IP d'où est situé la base de données
+    dbQAS3000.setDatabaseName("QAS3000"); // On indique le nom de la base de données dans laquel on veut entrer
+    dbQAS3000.setUserName("mathieu"); // On indique un nom d'utilisateur pour se connecter
+    dbQAS3000.setPassword("projet2022"); // On indique le mot de passe correponsdant au nom d'utilisateur
+    dbQAS3000.setPort(3306); // On indique le port correspondant à la connexion
 
-    if (dbQAS3000.open())
+    if (dbQAS3000.open()) // On ouvre la base de données, si il y a un problème, on passera dans le else qui enverra un message d'erreur
     {
         qDebug() << "Ouverture de la base de donnée";
-        QSqlQuery requete;
+        
+        QSqlQuery requete; // Variable qui va contenir la requête
+        
+        // On lance ici, une grande requête SQL qui va chercher les valeurs dont nous avons besoin. On prend la dernière valeur entrée dans la base de données
+        
         if(requete.exec("SELECT CO2, TEMPT, HUMI_H, QUALITYQ FROM CO2, Temperature, Humidite, QualiteAir WHERE ID_CO2 = (SELECT COUNT(ID_CO2) + 2 FROM CO2) AND ID_TEMP = (SELECT COUNT(ID_TEMP) - 1 FROM Temperature) AND ID_HUMI = (SELECT COUNT(ID_HUMI) - 1 FROM Humidite) AND ID_QA = (SELECT COUNT(ID_QA) - 1 FROM QualiteAir)")) //,`QualiteAir`,`Humidite`
         {
             qDebug() << "Requête ok";
             if(requete.next()){
+                    // On spécifie quels valeurs on récupère et on les converties avec toInt et toFloat selon la valeur récupérées. On les ranges dans les attribtus correspondants
                      CO2 = requete.value("CO2").toInt();
                      Temp = requete.value("TEMPT").toFloat();
                      Hum = requete.value("HUMI_H").toInt();
@@ -81,9 +99,11 @@ int IHM::connexion()
         }
         else
         {
-            qDebug() << "Erreur requête \n" << requete.lastError();
+            qDebug() << "Erreur requête \n" << requete.lastError(); // L'erreur est récupéré avec lastError et est affiché avec qDebug
         }
-
+        
+        // On lance ici, une autre requête SQL permettant l'insertion des valeurs correspondant aux boutons auto et on/off dans la base de données
+        
          if(requete.exec("INSERT INTO `Etat`(`AUTO`,`ETAT`)"" VALUES(" + QString::number(automatic) + ','+ QString::number(etat) +')')) //"+ automatic +""+ etat +"
          {
              cout << automatic << "et" << etat << endl;
@@ -93,7 +113,7 @@ int IHM::connexion()
          {
             qDebug() << "Erreur requête \n" << requete.lastError();
          }
-
+        // Quand la méthode est terminée, on ferme la base de données
         dbQAS3000.close();
     }
     else
@@ -103,6 +123,8 @@ int IHM::connexion()
     }
     return 0;
 }
+
+// On définit ici des getters pour nos attributs, on s'en servira dans les méthodes définits plus tôt permettant l'affichage des valeurs
 
 int IHM::getCO2()
 {
@@ -123,6 +145,9 @@ int IHM::getQA()
 {
     return QA;
 }
+
+// Les méthodes suivantes sont également des getters, mais les valeurs ne sont pas récupérées dans la base de données, on les récupères avec la méthode de QT currentDateTIme.
+// On convertis les variables en string avec toString avant de les inclure dans les variables correspondantes
 
 QString IHM::getHeure()
 {
@@ -147,6 +172,9 @@ QString IHM::getCodeCache()
     return CodeCache;
 }
 
+// On définit ici, les méthodes correspondantes aux boutons de l'IHM, si une action sur une variable est effectué alors on le précise ici
+
+// Les valeurs des trois méthodes suivantes servent uniquement au changement d'état de la fenêtre. Ces informations sont envoyées avec le insert into dans la méthode connexion
 
 void IHM::on_boutonAutoOff_clicked()
 {
@@ -170,6 +198,7 @@ void IHM::on_boutonActive_clicked()
     }
 }
 
+// Cette méthode permet après vérification de la variavle Code si le mot de passe est bon. Dans le cas ou c'est juste, avec les signaux et les slots on va cacher les parties qu'on ne veut plus voir. 
 
 void IHM::on_boutonValider_clicked()
 {
@@ -185,7 +214,7 @@ void IHM::on_boutonValider_clicked()
     }
 }
 
-
+// On définit ici, les actions à l'appuis de chaque boutons sur le digicode qui va effectuer une action sur les chaînes de carractères Code (qui permet la vérification) et CodeCache (qui permet un affichage visuel à l'utisalteur)
 void IHM::on_bouton1_clicked()
 {
     Code += "1";
