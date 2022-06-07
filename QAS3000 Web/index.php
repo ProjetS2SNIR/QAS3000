@@ -10,7 +10,7 @@
         <!-- ===== BOX ICONS ===== -->
         <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 
-        <title>Responsive Login Form Sign In Sign Up</title>
+        <title> Connectez vous au site QAS3000 </title>
     </head>
     <body>
         <div class="login">
