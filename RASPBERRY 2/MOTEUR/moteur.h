@@ -79,7 +79,7 @@ class Moteur
 	
 	void open(){
 		runMotor(i2c, motor, MOTOR_BACK);
-		sleep(3);
+		sleep(12);
 		runMotor(i2c, motor, MOTOR_RELEASE);
 		sleep(30);
 	}
@@ -88,7 +88,7 @@ class Moteur
 	
 	void close(){
 		runMotor(i2c, motor, MOTOR_FORWARD);
-		sleep(3);
+		sleep(12);
 		runMotor(i2c, motor, MOTOR_RELEASE);
 		sleep(30);
 	}
