@@ -49,7 +49,7 @@ sql::Statement* connexion()
 }
 
 
-string getco2(){
+string getco2(){ //Fonction getco2() permet de prelever des données dans le fichier co2.txt
 		system("sudo python3 co2.py > co2.txt");
 		ifstream fichier("co2.txt",ios::in);
                 if(fichier)
@@ -61,7 +61,7 @@ string getco2(){
 		return contenu;
 }
 
-string getairquality(){
+string getairquality(){ //Fonction getairquality() permet de prelever des données dans le fichier airquality.txt
 		system("python3 airquality.py 0 > airquality.txt");
 		string valeuraq;
 		ifstream fichier("airquality.txt",ios::in);
@@ -75,7 +75,7 @@ string getairquality(){
 		return valeuraq;
 }
 
-string gettemp()
+string gettemp()  //Fonction gettemp() permet de prelever des données dans le fichier dht.txt
 {
 		system("python3 dht.py > dht.txt");
 		string temp;
@@ -90,7 +90,7 @@ string gettemp()
 		return temp;
 }
 
-string gethum(){
+string gethum(){ //Fonction gethum() permet de prelever des données dans le fichier dht.txt
 		string humidite;
 		ifstream fichier("dht.txt",ios::in);
 
@@ -106,8 +106,8 @@ string gethum(){
 void insertion(string req, sql::Statement* stmt)
 {
     // Etape 4 : exécution d'une requete : ici on insere un enregistrement
-    // dans la table Animal
-    // string req = "INSERT INTO CAPTEURS VALUES(NULL,'13.6','45', '420', '100', NOW());";  
+    // dans la table des capteurs 
+     
     int result = stmt->executeUpdate(req);
     cout << "Resultat INSERT: " << result << endl;
 
@@ -120,11 +120,11 @@ void insertion(string req, sql::Statement* stmt)
 
 string requete(string airquality, string co2, string temp, string hum, sql::Statement* stmt)
 {
-    string reqco2 =  "INSERT INTO `CO2`(`DATEC`, `CO2`) VALUES (NOW(),'"+ co2 + "');";
-    int result1 = stmt->executeUpdate(reqco2);
-    cout << "Resultat INSERT 1: " << result1 << endl;
+    string reqco2 =  "INSERT INTO `CO2`(`DATEC`, `CO2`) VALUES (NOW(),'"+ co2 + "');"; //Insert la date et la valeur de co2 dans la table 'DATEC' et 'CO2'
+    int result1 = stmt->executeUpdate(reqco2); 
+    cout << "Resultat INSERT 1: " << result1 << endl; // Exécution de la requête, on obtient un 1 si la valeur est bien saisie dans la base de données
 
-    string reqtemp =  "INSERT INTO `Temperature`(`DATET`, `TEMPT`) VALUES (NOW(),'"+temp + "');";
+    string reqtemp =  "INSERT INTO `Temperature`(`DATET`, `TEMPT`) VALUES (NOW(),'"+temp + "');"; 
     int result2 = stmt->executeUpdate(reqtemp);
     cout << "Resultat INSERT 2: " << result2 << endl;
 
@@ -160,7 +160,7 @@ int main()
  	  hum = gethum();
 
     // AFFICHAGE
-    cout << "La qualité de l'air: "<< airquality << " S.U." << endl;
+    cout << "La qualité de l'air: "<< airquality << " S.U." << endl; //Afficher la valeur de la qualité de l'air 
     cout << "La qualité de Co2: "<< co2 << " ppm" << endl;
     cout << "La température: "<< temp << "°C" << endl;
     cout << "L'humidité: "<< hum << "%" << endl;
