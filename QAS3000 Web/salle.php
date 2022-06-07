@@ -1,17 +1,20 @@
 <?php
-	          	$mysqli = new mysqli("localhost", "simon", "projet2022", "QAS3000");
-	          	$mysqli->set_charset("utf8");
-        
-		          $requete = ("SELECT CO2,TEMPT,HUMI_H,QUALITYQ FROM CO2,Temperature,Humidite,QualiteAir WHERE ID_CO2 = (SELECT COUNT(ID_CO2) + 2 from CO2) and ID_TEMP = (SELECT COUNT(ID_TEMP) - 1 from Temperature) and ID_HUMI = (SELECT COUNT(ID_HUMI) - 1 from Humidite) and ID_QA = (SELECT COUNT(ID_QA) - 1 from QualiteAir) and ID_HUMI = (SELECT COUNT(ID_HUMI) - 1 from Humidite) and ID_QA = (SELECT COUNT(ID_QA) - 1 from QualiteAir)");
+	          /* Connexion à la base de données */
+		  $mysqli = new mysqli("localhost", "simon", "projet2022", "QAS3000");
+	          $mysqli->set_charset("utf8");
+
+        	  /* Requête permettant de selectionné les valeurs de CO2, Temptérature, Humidité, Qualité de l'air dans la base de données */
+		  $requete = ("SELECT CO2,TEMPT,HUMI_H,QUALITYQ FROM CO2,Temperature,Humidite,QualiteAir WHERE ID_CO2 = (SELECT COUNT(ID_CO2) + 2 from CO2) and ID_TEMP = (SELECT COUNT(ID_TEMP) - 1 from Temperature) and ID_HUMI = (SELECT COUNT(ID_HUMI) - 1 from Humidite) and ID_QA = (SELECT COUNT(ID_QA) - 1 from QualiteAir) and ID_HUMI = (SELECT COUNT(ID_HUMI) - 1 from Humidite) and ID_QA = (SELECT COUNT(ID_QA) - 1 from QualiteAir)");
    
-	          	$resultat = $mysqli->query($requete);
-             		 $ligne = $resultat->fetch_assoc();
+	          $resultat = $mysqli->query($requete);
+             	  $ligne = $resultat->fetch_assoc();
                   $temp = $ligne['TEMPT'];
                   $humi = $ligne['HUMI_H'];
                   $co2 = $ligne['CO2'];
                   $qa = $ligne['QUALITYQ'];
-
-              header("Refresh: 10");
+			
+		  /* Réactualiser la page tous les 10 s */
+                  header("Refresh: 10"); 
     
 	          	$mysqli->close();
 		?>
@@ -61,7 +64,7 @@
 <div class="left">
         <div class="content">
             <h1>Salle A031</h1>
-           <img class="temp" src="./image/temperaturenoir.png"><a class="resultt"> <?php echo $temp . '°'; ?></a>
+           <img class="temp" src="./image/temperaturenoir.png"><a class="resultt"> <?php echo $temp . '°'; ?></a> <!-- Afficher la valeur de temp -->
            <img class="humi" src="./image/humiditénoir.png"><a class="resulth"> <?php echo $humi; ?> % </a>
  	   <img class="co" src="./image/co2noir.png"><a class="resultc"> <?php echo $co2; ?> ppm </a>
  	   <img class="pm" src="./image/pm2.5noir.png"><a class="resultp"> <?php echo $qa; ?> ppm </a>
