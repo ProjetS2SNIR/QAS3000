@@ -4,13 +4,11 @@ import sys
 
 sgp30 = SGP30()
 
-#result = sgp30.command('set_baseline', (0xFECA, 0xBEBA)) 
-def crude_progress_bar():
-	sys.stdout.write('.')
-	sys.stdout.flush()
+def crude_progress_bar(): #Fonction permettant de chauffer le capteur avant la mesure
+        sys.stdout.flush()
 
-sgp30.start_measurement()
+sgp30.start_measurement() #Fonction permettant de mesurer le CO2 dans l'air
 
 result = sgp30.get_air_quality()
-print(result)
+print(result) #Affichage des résultats
 time.sleep(1.0)
