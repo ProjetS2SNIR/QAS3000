@@ -1,18 +1,14 @@
-#include "ihm.h"
-#include <QApplication>
-#include <QWidget>
-#include <QPushButton>
-#include <time.h>
-#include <unistd.h>
-#include <QTimer>
+#include "ihm.h" // On include ici ihm.h pour récupérer toutes les méthodes et attributs crées pour l'IHM
+
+// Définition du main
 
 int main(int argc, char *argv[])
 {
-    // Création de la l'application, de la fenêtre et affichage
+    // Création de la l'application, de la fenêtre et de l'affichage
 
     QApplication a(argc, argv);
     IHM w;
-    w.showFullScreen();
+    w.showFullScreen(); // On utilise showFullScreen pour mettre en plein écran
 
     // Connexion à la BDD
 
@@ -31,7 +27,7 @@ int main(int argc, char *argv[])
         w.valeurDate_valueChanged();
         w.dateHeure_valueChanged();
 
-        // Actualisation de la chaîne de caractère ****
+        // Actualisation toutes les 0.5 secondes de la chaîne de caractère ****
 
         QTimer *timer2 = new QTimer(&w);
 
@@ -39,7 +35,7 @@ int main(int argc, char *argv[])
 
         timer2->start(500);
 
-        // Actualisation toutes les 30 secondes avec QTimer (threads de QT)
+        // Actualisation toutes les 10 secondes avec QTimer (threads de QT)
 
         QTimer *timer = new QTimer(&w);
 
