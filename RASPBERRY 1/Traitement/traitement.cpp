@@ -11,8 +11,8 @@
 #include <cppconn/statement.h>
 #include <unistd.h>
 
-#include "/home/pi/TEST/reception_433.cpp"
-#include "/home/pi/TEST/horaires.cpp"
+#include "../SMS/reception_433.cpp"
+#include "../SMS/horaires.cpp"
 #include "emission.cpp"
 using namespace std;
 
