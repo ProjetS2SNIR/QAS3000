@@ -19,20 +19,21 @@ $iniqualite= "1000";
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 
-// Attempt insert query execution
+// Fonction permettant d'envoyer les valeurs saisies dans la base de données 
 if(isset($_POST['valide'])) {
 $sql = "INSERT INTO Seuil (temp_seuil, humi_seuil, co2_seuil, qualite_seuil) VALUES ($temp, $humi, $co2, $qualite)";
 }
-elseif(isset($_POST['initialise'])) {
+// Fonction permettant d'envoyer les valeurs par défaults dans la base de données 
+elseif(isset($_POST['initialise']))  {
 $sql = "INSERT INTO Seuil (temp_seuil, humi_seuil, co2_seuil, qualite_seuil) VALUES ($initemp, $inihumi, $inico2, $iniqualite)";
 }
 
 
 if(mysqli_query($conn, $sql))
 {
-    header('Location: parametre.html');
+    header('Location: parametre.html'); //Envoie dans la page parametre.html
 } else{
-    echo "\nERROR: Could not able to execute $sql " . mysqli_error($con);
+    echo "\nERROR: Could not able to execute $sql " . mysqli_error($con); // Afficher Error 
 }
 
 // Close connection
