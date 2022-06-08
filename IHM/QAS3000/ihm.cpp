@@ -284,3 +284,10 @@ void IHM::on_boutonEffacer_clicked()
     Code = "";
     CodeCache = "";
 }
+
+void IHM::on_boutonDeco_clicked()
+{
+    qApp->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+
+}
