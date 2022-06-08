@@ -76,17 +76,19 @@ char ancien;
 
 
 while(1){
+// Lecture de l'état  de la fenetre
   resultat = A036.lireGPIO();
+	// Si la fenetre est fermé
 	if (resultat=='0' && resultat!=ancien)
 	{
-    A036.close();
-    A036.emettre();
+    		A036.close(); // Affichage 
+    		A036.emettre(); // Emission 60000
 	}
 
 	if (resultat=='1' && resultat!=ancien)
 	{
-    A036.open();
-    A036.emettre();
+    		A036.open(); // Affichage
+    		A036.emettre(); // Emission 61111
 	}
 	ancien = resultat;
 	}
