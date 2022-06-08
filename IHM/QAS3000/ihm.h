@@ -92,6 +92,7 @@ private slots:
     void on_bouton8_clicked();
     void on_bouton9_clicked();
     void on_boutonEffacer_clicked();
+    void on_boutonDeco_clicked();
 };
 
 #endif // IHM_H
