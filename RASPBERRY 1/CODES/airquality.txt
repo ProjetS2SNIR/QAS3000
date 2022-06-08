@@ -1,2 +1,0 @@
-Hat Name = 'Grove Base Hat RPi'
-74 l'air est sain

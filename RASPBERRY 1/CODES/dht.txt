@@ -1,1 +1,0 @@
-Temp=25.5°C  Humidity=37.6%
