@@ -189,8 +189,6 @@ int main(void)
 		bool etat = fenetre.state();
 		
 		// On crée la variable ANCIENETATBOUTON qui va récupérer l'etat du bouton avant que le nouvel état change
-		
-		bool ANCIENETATBOUTON;
 
 		cout << "Etat de la fenetre :" << etat;
 
@@ -200,21 +198,22 @@ int main(void)
 		
 		if(instance.getAutomatique() == 0)	// Si on récupère de la base de données, la valeur 0 par l'IHM, on passe en mode manuel
 		{
-			if(instance.getEtatBouton() != ANCIENETATBOUTON) // On compare l'etat du bouton à l'ancien, si il n'est pas le même on entre
-			{
-				ANCIENETATBOUTON = instance.getEtatBouton();
-				
+			if(instance.getEtatBouton() != etat) // On compare l'etat du bouton à l'ancien, si il n'est pas le même on entre
+			{	
 				// On effectue la commande au changement d'état correspondant
 				
-				if(instance.getEtatBouton() == 0 && etat == 1)
+				if(instance.getEtatBouton() == 0)
 				{
 					command.close();
 				}
-        
-				if(instance.getEtatBouton() == 1 && etat == 0)
+     				else
 				{
 					command.open();
 				}
+			}
+			else
+			{
+				command.wait();
 			}
 			sleep(5);
 		}
